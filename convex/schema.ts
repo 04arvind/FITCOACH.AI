@@ -23,6 +23,15 @@ export default defineSchema({
                     exercises: v.optional(v.array(v.string())),
                 }))
             }))
-        })
-    })
+        }),
+
+        dietPlan : v.object({
+            dailyCalories: v.number(),
+            dailymeals: v.array(v.object({
+                name : v.string(),
+                foods : v.array(v.string())
+            })),
+        }),
+        isActive : v.boolean(),
+    }).index("by_user_id", ["userId"]).index("by_active",["isActive"]),
 })
